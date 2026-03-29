@@ -37,7 +37,7 @@ app.delete("/users/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Hello from Express");
+  res.send(`Hello from ${process.env.APP_NAME}`);
 });
 
 app.listen(port, () => {
