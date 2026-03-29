@@ -7,8 +7,9 @@ COPY package*.json .
 RUN npm ci
 
 COPY . .
+RUN npm run build
 
 ENV PORT=5000
 ENV APP_NAME="Express App"
 
-CMD ["npm", "start"]
+CMD ["node", "dist/index.js"]
