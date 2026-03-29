@@ -8,4 +8,6 @@ RUN npm ci
 
 COPY index.js .
 
+ENV PORT=5000
+
 CMD ["npm", "start"]
