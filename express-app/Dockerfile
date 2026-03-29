@@ -6,7 +6,7 @@ COPY package*.json .
 
 RUN npm ci
 
-COPY index.js .
+COPY . .
 
 ENV PORT=5000
 ENV APP_NAME="Express App"
