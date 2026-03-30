@@ -1,0 +1,8 @@
+ 1. docker volume create shared-nginx
+
+ 2. docker run -d -p 3000:80 -v shared-nginx:/usr/share/nginx/html nginx:latest
+
+ 3. docker run -d -p 3001:80 -v shared-nginx:/usr/share/nginx/html nginx:latest
+
+ 4. docker exec -it <container_id> /bin/bash
+ 4. echo "hi" > /usr/share/nginx/html/index.html
