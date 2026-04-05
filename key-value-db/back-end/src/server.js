@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const {healthRouter} = require('./routes/health');
+const {storeRouter} = require('./routes/store');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,11 +14,8 @@ const DATABASE_NAME = process.env.DATABASE_NAME;
 const MONGO_HOST = process.env.MONGO_HOST;
 const MONGO_URI = `mongodb://${MONGO_HOST}/${DATABASE_NAME}`;
 
-app.get('/health', (req, res) => {
-  res.status(200).send('OK1');
-});
-
-console.log("connecting to MongoDB");
+app.use('/health', healthRouter);
+app.use('/store', storeRouter);
 
 mongoose.connect(MONGO_URI, {
   auth:{
