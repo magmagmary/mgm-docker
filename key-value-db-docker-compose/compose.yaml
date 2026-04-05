@@ -16,6 +16,26 @@ services:
         target: /data/db
     networks:
       - key-value-network
+  backend:
+    depends_on:
+      - db
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    env_file:
+      - .env.db
+    networks:
+      - key-value-network
+    environment:
+      - MONGO_HOST=db
+      - PORT=5000
+    volumes:
+      - type: bind
+        source: ./back-end/src
+        target: /app/src
+        read_only: true
 
 volumes:
   mongodb-data:
