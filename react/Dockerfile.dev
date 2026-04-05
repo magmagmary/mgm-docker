@@ -9,6 +9,3 @@ RUN npm ci
 COPY . .
 
 CMD ["npm", "run", "dev"]
-
-
-# docker run --rm  -p 3000:3000 -v ./src:./app/src  --name $container_name $image_name

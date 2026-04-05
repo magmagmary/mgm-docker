@@ -1,5 +1,6 @@
 # Sources
 SCRIPT_DIR=$(dirname "$0")
+DB_CONFIG_DIR=$(realpath "$SCRIPT_DIR/../db-config")
 source "$SCRIPT_DIR/../.env.volume"
 source "$SCRIPT_DIR/../.env.network"
 source "$SCRIPT_DIR/../.env.db"
@@ -33,6 +34,6 @@ docker run -d --rm \
 -e MONGO_KEY_VALUE_PASSWORD=$MONGO_KEY_VALUE_PASSWORD \
 -p $LOCALHOST_PORT:$CONTAINER_PORT \
 -v $VOLUME_NAME:$VOLUME_CONTAINER_PATH \
--v ./db-config/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro \
+-v "$DB_CONFIG_DIR/mongo-init.js":/docker-entrypoint-initdb.d/mongo-init.js:ro \
 --network $NETWORK_NAME \
 $MONGO_IMAGE:$MONGO_VERSION
