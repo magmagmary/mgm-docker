@@ -8,6 +8,4 @@ RUN npm ci
 
 COPY . .
 
-ENV PORT=4444
-
 CMD ["npm", "run", "dev"]
