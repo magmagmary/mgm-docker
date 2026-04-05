@@ -12,12 +12,6 @@ MONGO_VERSION="8.0.20-ubuntu2204"
 MONGO_ROOT_USERNAME="admin"
 MONGO_ROOT_PASSWORD="password"
 
-#KEY-VALUE CREDENTIALS
-DATABASE_NAME="key-value-db"
-MONGO_KEY_VALUE_USERNAME="key-value-user"
-MONGO_KEY_VALUE_PASSWORD="key-value-password"
-
-
 if [ "$(docker ps -q -f name=$DB_CONTAINER_NAME)" ]; then
     echo "Container $DB_CONTAINER_NAME already exists"
     exit 1;
