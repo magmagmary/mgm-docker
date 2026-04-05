@@ -11,15 +11,17 @@ DATABASE_NAME="key-value-db"
 MONGO_KEY_VALUE_USERNAME="key-value-user"
 MONGO_KEY_VALUE_PASSWORD="key-value-password"
 
-#CONNECTION STRING
-LOCALHOST_PORT=27017
-CONTAINER_PORT=27017
-NETWORK_NAME="key-value-network"
+# Sources
+SCRIPT_DIR=$(dirname "$0")
+source "$SCRIPT_DIR/../.env.volume"
+source "$SCRIPT_DIR/../.env.network"
 
-#STORAGE
-VOLUME_NAME="key-value-data"
-VOLUME_CONTAINER_PATH="/data/db"
-
+if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+    echo "Container $CONTAINER_NAME already exists"
+    exit 1;
+else
+    source "$SCRIPT_DIR/setup.sh"
+fi
 
 docker run -d \
 --name $CONTAINER_NAME \
