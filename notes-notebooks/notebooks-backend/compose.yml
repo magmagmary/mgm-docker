@@ -28,7 +28,7 @@ services:
       - 3333:3333
     environment:
       - PORT=3333
-      - MONGO_URI=mongodb://${NOTEBOOKS_USERNAME}:${NOTEBOOKS_PASSWORD}@db/${DATABASE_NAME}
+      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db/${DATABASE_NAME}
     networks:
       - notebooks-network
     develop:
