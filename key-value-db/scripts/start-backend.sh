@@ -24,5 +24,6 @@ else
     -e MONGO_KEY_VALUE_USERNAME=$MONGO_KEY_VALUE_USERNAME \
     -e MONGO_KEY_VALUE_PASSWORD=$MONGO_KEY_VALUE_PASSWORD \
     -e PORT=$CONTAINER_PORT \
+    -v $BACKEND_DIR/src/server.js:/app/src/server.js:ro \
     $BACKEND_IMAGE_NAME
 fi  

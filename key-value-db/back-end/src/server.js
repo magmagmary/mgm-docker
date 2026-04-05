@@ -13,7 +13,7 @@ const MONGO_HOST = process.env.MONGO_HOST;
 const MONGO_URI = `mongodb://${MONGO_HOST}/${DATABASE_NAME}`;
 
 app.get('/health', (req, res) => {
-  res.status(200).send('OK');
+  res.status(200).send('OK1');
 });
 
 console.log("connecting to MongoDB");
