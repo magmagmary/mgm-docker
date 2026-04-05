@@ -16,7 +16,6 @@ app.get('/health', (req, res) => {
 console.log('***** Connecting to MongoDB *****', MONGO_URI);
 
 mongoose.connect(MONGO_URI, {
-  authSource: DATABASE_NAME,
   connectTimeoutMS:3000
 }).then(() => {
     console.log('Connected to MongoDB');
