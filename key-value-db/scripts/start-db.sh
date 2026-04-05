@@ -12,6 +12,10 @@ MONGO_VERSION="8.0.20-ubuntu2204"
 MONGO_ROOT_USERNAME="admin"
 MONGO_ROOT_PASSWORD="password"
 
+#PORTS
+export LOCALHOST_PORT=27017
+export CONTAINER_PORT=27017
+
 if [ "$(docker ps -q -f name=$DB_CONTAINER_NAME)" ]; then
     echo "Container $DB_CONTAINER_NAME already exists"
     exit 1;
