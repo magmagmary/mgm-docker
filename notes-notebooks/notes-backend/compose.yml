@@ -28,7 +28,7 @@ services:
       - 4444:4444
     environment:
       - PORT=4444
-      - MONGO_URI=mongodb://${NOTES_USERNAME}:${NOTES_PASSWORD}@db/${DATABASE_NAME}
+      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db/${DATABASE_NAME}
     networks:
       - notes-network
     develop:

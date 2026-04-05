@@ -1,13 +1,13 @@
 
 const DATABASE_NAME = process.env.DATABASE_NAME;
-const NOTES_USERNAME = process.env.NOTES_USERNAME;
-const NOTES_PASSWORD = process.env.NOTES_PASSWORD;
+const DATABASE_USERNAME = process.env.DATABASE_USERNAME;
+const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
 
 db = db.getSiblingDB(DATABASE_NAME);
 
 db.createUser({
-  user: NOTES_USERNAME,
-  pwd: NOTES_PASSWORD,
+  user: DATABASE_USERNAME,
+  pwd: DATABASE_PASSWORD,
   roles: [
     { role: 'readWrite', db: DATABASE_NAME },
   ],
