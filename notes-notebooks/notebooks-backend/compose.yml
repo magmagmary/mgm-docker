@@ -1,7 +1,7 @@
 name: notebooks
 
 services:
-  db:
+  notebooks-db:
     image: mongodb/mongodb-community-server:8.0.20-ubuntu2204
     ports:
       - 27017:27017
@@ -18,9 +18,9 @@ services:
     networks:
       - notebooks-network
 
-  backend:
+  notebooks-backend:
     depends_on:
-      - db
+      - notebooks-db
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
       - 3333:3333
     environment:
       - PORT=3333
-      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db/${DATABASE_NAME}
+      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@notebooks-db/${DATABASE_NAME}
     networks:
       - notebooks-network
     develop:

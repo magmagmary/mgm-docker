@@ -1,10 +1,10 @@
 name: notes
 
 services:
-  db:
+  notes-db:
     image: mongodb/mongodb-community-server:8.0.20-ubuntu2204
     ports:
-      - 27017:27017
+      - 27018:27017
     env_file:
       - .env
     volumes:
@@ -18,9 +18,9 @@ services:
     networks:
       - notes-network
 
-  backend:
+  notes-backend:
     depends_on:
-      - db
+      - notes-db
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
       - 4444:4444
     environment:
       - PORT=4444
-      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@db/${DATABASE_NAME}
+      - MONGO_URI=mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@notes-db/${DATABASE_NAME}
     networks:
       - notes-network
     develop:
