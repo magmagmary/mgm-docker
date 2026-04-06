@@ -24,6 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: development
     ports:
       - 4444:4444
     environment:
