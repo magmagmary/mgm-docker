@@ -2,18 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+const {healthRouter} = require('./routes/health');
+const {notebookRouter} = require('./routes/notebooks');
+
 const app = express();
 const PORT = process.env.PORT || 3333;
 const MONGO_URI = process.env.MONGO_URI;
 const DATABASE_NAME = process.env.DATABASE_NAME;
 
 app.use(bodyParser.json());
-
-app.get('/api/notebooks/health', (req, res) => {
-  res.status(200).send('OK Notebooks Backend');
-});
-
-console.log('***** Connecting to MongoDB *****', MONGO_URI);
+app.use('/api/notebooks/health', healthRouter);
+app.use('/api/notebooks', notebookRouter);
 
 mongoose.connect(MONGO_URI, {
   connectTimeoutMS:3000
