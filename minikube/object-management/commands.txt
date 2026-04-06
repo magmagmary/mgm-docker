@@ -1,0 +1,9 @@
+Imperative Commands:
+kubectl create -f nginx-pod.yml
+kubectl create -f nginx-service.yml
+kubectl get pods
+kubectl get services
+
+Declarative Commands:
+kubectl apply -f nginx-pod.yml
+kubectl apply -f nginx-service.yml
