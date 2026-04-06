@@ -1,5 +1,7 @@
 services:
   notes-backend:
+    environment:
+      - NOTEBOOKS_BACKEND_URL=http://reverse-proxy/api/notebooks
     networks:
       - global-network
 

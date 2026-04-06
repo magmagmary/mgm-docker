@@ -3,15 +3,16 @@ const { model, Schema } = require('mongoose');
 const noteSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
     },
     content: {
         type: String,
         required: true,
         default: ''
     },
-    notebookId: {
-        type: Schema.Types.ObjectId,
+    notebookName: {
+        type: String,
         required: false,
         default: null
     }

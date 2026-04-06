@@ -1,5 +1,6 @@
 const express = require('express');
 const noteRouter = express.Router();
+const axios = require('axios');
 
 const { Note } = require('../models/notes.model');
 
@@ -31,13 +32,31 @@ noteRouter.get('/:name', async (req, res) => {
 });
 
 noteRouter.post('/', async (req, res) => {
-    const { name , content } = req.body;
-    if (!name || !content) {
+    const { name , content , notebookName } = req.body;
+    let validatedNotebookName = notebookName;
+
+    if(validatedNotebookName) {
+        try {
+            const notebook = await axios.get(`${process.env.NOTEBOOKS_BACKEND_URL}/${notebookName}`);
+        } catch (error) {
+            validatedNotebookName = undefined;
+            const jsonResponse = error.response.data;
+
+            return res.status(404).json({ message: jsonResponse.message });
+        }
+    }
+
+    if (!name || !content ) {
         return res.status(400).json({ message: 'Name and content are required' });
     }
 
+    const existingNote = await Note.findOne({ name });
+    if (existingNote) {
+        return res.status(400).json({ message: 'Note already exists' });
+    }
+
     try { 
-        const note = await Note.create(req.body);
+        const note = await Note.create({ name, content, notebookName: validatedNotebookName });
         res.status(201).json(note);
     } catch (error) {
         res.status(500).json({ message: error.message });
