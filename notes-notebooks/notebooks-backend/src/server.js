@@ -9,7 +9,7 @@ const DATABASE_NAME = process.env.DATABASE_NAME;
 
 app.use(bodyParser.json());
 
-app.get('/health', (req, res) => {
+app.get('/api/notebooks/health', (req, res) => {
   res.status(200).send('OK Notebooks Backend');
 });
 

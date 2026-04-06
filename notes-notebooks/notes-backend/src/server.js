@@ -9,7 +9,7 @@ const MONGO_URI = process.env.MONGO_URI;
 
 app.use(bodyParser.json());
 
-app.get('/health', (req, res) => {
+app.get('/api/notes/health', (req, res) => {
   res.status(200).send('OK Notes Backend');
 });
 

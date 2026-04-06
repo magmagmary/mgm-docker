@@ -1,3 +1,21 @@
 include:
   - notes-backend/compose.yml
   - notebooks-backend/compose.yml
+
+services:
+  reverse-proxy:
+    image: nginx:1.29.7
+    ports:
+      - 8080:80
+    volumes:
+      - type: bind
+        source: ./reverse-proxy/nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - notes-backend
+      - notebooks-backend
+    networks:
+      - global-network
+
+networks:
+  global-network:
