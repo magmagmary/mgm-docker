@@ -1,3 +1,5 @@
+# kubectl run nginx-pod --image=nginx:1.29.7 --
+
 apiVersion: v1
 kind: Pod
 metadata:
